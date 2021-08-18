@@ -1,10 +1,11 @@
 open Webapi.Dom;
 open! HtmlDocument;
 
-let el = document |> Document.createElement("strong");
+let el = document->Document.createElement("strong");
 let htmlDocument =
-  document |> Document.asHtmlDocument
-           |> TestHelpers.unsafelyUnwrapOption;
+  document
+  ->Document.asHtmlDocument
+  ->TestHelpers.unsafelyUnwrapOption;
 
 let _ = activeElement(htmlDocument);
 let _ = body(htmlDocument);
@@ -36,13 +37,13 @@ let _ = url(htmlDocument);
 
 close(htmlDocument);
 let _ = execCommand("copy", false, None, htmlDocument);
-let _ = getElementsByName("angry-joe", htmlDocument);
+let _ = getElementsByName(htmlDocument, "angry-joe");
 let _ = getSelection(htmlDocument);
 let _ = hasFocus(htmlDocument);
 open_(htmlDocument);
-let _ = queryCommandEnabled("copy", htmlDocument);
-let _ = queryCommandIndeterm("cut", htmlDocument);
-let _ = queryCommandSupported("paste", htmlDocument);
-let _ = queryCommandValue("fontName", htmlDocument);
-write("Hello World!", htmlDocument);
-writeln("Hello Newline!", htmlDocument);
+let _ = queryCommandEnabled(htmlDocument, "copy");
+let _ = queryCommandIndeterm(htmlDocument, "cut");
+let _ = queryCommandSupported(htmlDocument, "paste");
+let _ = queryCommandValue(htmlDocument, "fontName");
+write(htmlDocument, "Hello World!");
+writeln(htmlDocument, "Hello Newline!");

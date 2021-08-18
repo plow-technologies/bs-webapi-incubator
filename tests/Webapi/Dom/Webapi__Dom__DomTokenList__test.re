@@ -2,22 +2,23 @@ open Webapi.Dom;
 open DomTokenList;
 
 let tlist =
-  document |> Document.createElement("div")
-           |> Element.classList;
+  document
+  ->Document.createElement("div")
+  ->Element.classList;
 
 let _ = length(tlist);
-let _ = item(3, tlist);
+let _ = item(tlist, 3);
 
-add("my-class", tlist);
-addMany([|"my-class", "my-other-class"|], tlist);
-let _ = contains("my-class", tlist);
-forEach((item, _) => print_endline(item), tlist);
-remove("my-class", tlist);
-removeMany([|"my-class", "my-other-class"|], tlist);
-replace("my-class", "my-other-class", tlist);
-let _ = supports("my-class", tlist);
-let _ = toggle("my-class", tlist);
-let _ = toggleForced("my-class", tlist);
+add(tlist, "my-class");
+addMany(tlist, [|"my-class", "my-other-class"|]);
+let _ = contains(tlist, "my-class");
+forEach(tlist, (item, _) => print_endline(item));
+remove(tlist, "my-class");
+removeMany(tlist, [|"my-class", "my-other-class"|]);
+replace(tlist, "my-class", "my-other-class");
+let _ = supports(tlist, "my-class");
+let _ = toggle(tlist, "my-class");
+let _ = toggleForced(tlist, "my-class");
 let _ = toString(tlist);
 let _ = value(tlist);
 let _ = setValue(tlist, "foo");

@@ -23,8 +23,8 @@ let _ = password(location);
 let _ = setPassword(location, "lambda-the-ultimate");
 let _ = origin(location);
 
-assign("http://reason.ml", location);
+assign(location, "http://reason.ml");
 reload(location);
 reloadWithForce(location);
-replace("http://reason.ml", location);
+replace(location, "http://reason.ml");
 let _ = toString(location);

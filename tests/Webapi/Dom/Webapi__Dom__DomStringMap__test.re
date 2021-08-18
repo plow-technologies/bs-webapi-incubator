@@ -3,9 +3,9 @@ open Webapi.Dom.DomStringMap;
 
 let dataset =
   document
-  |> Document.createElement("div")
-  |> Element.asHtmlElement
-  |> Belt.Option.map(_, HtmlElement.dataset);
+  ->Document.createElement("div")
+  ->Element.asHtmlElement
+  ->Belt.Option.map(_, HtmlElement.dataset);
 
 let () = switch (dataset) {
   | Some(dataset) =>

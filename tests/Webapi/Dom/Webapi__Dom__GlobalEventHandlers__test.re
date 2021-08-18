@@ -2,32 +2,32 @@ open Webapi.Dom;
 
 let handleSelection = (_) => print_endline("change");
 
-let elm = document |> Document.createElement("strong");
+let elm = document->Document.createElement("strong");
 
-Element.addSelectionChangeEventListenerWithOptions(handleSelection, {"passive": true, "once": true, "capture": false}, elm);
-Element.addSelectionChangeEventListenerUseCapture(handleSelection, elm);
-Element.removeSelectionChangeEventListener(handleSelection, elm);
-Element.removeSelectionChangeEventListenerWithOptions(handleSelection, {"passive": true, "capture": false}, elm);
-Element.removeSelectionChangeEventListenerUseCapture(handleSelection, elm);
+Element.addSelectionChangeEventListenerWithOptions(elm, handleSelection, {"passive": true, "once": true, "capture": false});
+Element.addSelectionChangeEventListenerUseCapture(elm, handleSelection);
+Element.removeSelectionChangeEventListener(elm, handleSelection);
+Element.removeSelectionChangeEventListenerWithOptions(elm, handleSelection, {"passive": true, "capture": false});
+Element.removeSelectionChangeEventListenerUseCapture(elm, handleSelection);
 
-let htmlElm = document |> Document.createElement("strong") |> HtmlElement.ofElement |> TestHelpers.unsafelyUnwrapOption;
+let htmlElm = document->Document.createElement("strong")->HtmlElement.ofElement->TestHelpers.unsafelyUnwrapOption;
 
-HtmlElement.addSelectionChangeEventListenerWithOptions(handleSelection, {"passive": true, "once": true, "capture": false}, htmlElm);
-HtmlElement.addSelectionChangeEventListenerUseCapture(handleSelection, htmlElm);
-HtmlElement.removeSelectionChangeEventListener(handleSelection, htmlElm);
-HtmlElement.removeSelectionChangeEventListenerWithOptions(handleSelection, {"passive": true, "capture": false}, htmlElm);
-HtmlElement.removeSelectionChangeEventListenerUseCapture(handleSelection, htmlElm);
+HtmlElement.addSelectionChangeEventListenerWithOptions(htmlElm, handleSelection, {"passive": true, "once": true, "capture": false});
+HtmlElement.addSelectionChangeEventListenerUseCapture(htmlElm, handleSelection);
+HtmlElement.removeSelectionChangeEventListener(htmlElm, handleSelection);
+HtmlElement.removeSelectionChangeEventListenerWithOptions(htmlElm, handleSelection, {"passive": true, "capture": false});
+HtmlElement.removeSelectionChangeEventListenerUseCapture(htmlElm, handleSelection);
 
-let htmlDoc = document |> Document.asHtmlDocument |> TestHelpers.unsafelyUnwrapOption;
+let htmlDoc = document->Document.asHtmlDocument->TestHelpers.unsafelyUnwrapOption;
 
-HtmlDocument.addSelectionChangeEventListenerWithOptions(handleSelection, {"passive": true, "once": true, "capture": false}, htmlDoc);
-HtmlDocument.addSelectionChangeEventListenerUseCapture(handleSelection, htmlDoc);
-HtmlDocument.removeSelectionChangeEventListener(handleSelection, htmlDoc);
-HtmlDocument.removeSelectionChangeEventListenerWithOptions(handleSelection, {"passive": true, "capture": false}, htmlDoc);
-HtmlDocument.removeSelectionChangeEventListenerUseCapture(handleSelection, htmlDoc);
+HtmlDocument.addSelectionChangeEventListenerWithOptions(htmlDoc, handleSelection, {"passive": true, "once": true, "capture": false});
+HtmlDocument.addSelectionChangeEventListenerUseCapture(htmlDoc, handleSelection);
+HtmlDocument.removeSelectionChangeEventListener(htmlDoc, handleSelection);
+HtmlDocument.removeSelectionChangeEventListenerWithOptions(htmlDoc, handleSelection, {"passive": true, "capture": false});
+HtmlDocument.removeSelectionChangeEventListenerUseCapture(htmlDoc, handleSelection);
 
-Window.addSelectionChangeEventListenerWithOptions(handleSelection, {"passive": true, "once": true, "capture": false}, window);
-Window.addSelectionChangeEventListenerUseCapture(handleSelection, window);
-Window.removeSelectionChangeEventListener(handleSelection, window);
-Window.removeSelectionChangeEventListenerWithOptions(handleSelection, {"passive": true, "capture": false}, window);
-Window.removeSelectionChangeEventListenerUseCapture(handleSelection, window);
+Window.addSelectionChangeEventListenerWithOptions(window, handleSelection, {"passive": true, "once": true, "capture": false});
+Window.addSelectionChangeEventListenerUseCapture(window, handleSelection);
+Window.removeSelectionChangeEventListener(window, handleSelection);
+Window.removeSelectionChangeEventListenerWithOptions(window, handleSelection, {"passive": true, "capture": false});
+Window.removeSelectionChangeEventListenerUseCapture(window, handleSelection);

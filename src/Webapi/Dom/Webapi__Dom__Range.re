@@ -28,14 +28,14 @@ type t = Dom.range;
 let compareBoundaryPoint: (Webapi__Dom__Types.compareHow, t, t) => Webapi__Dom__Types.compareResult =
   (how, range, self) =>
     Webapi__Dom__Types.decodeCompareResult(
-      compareBoundaryPoints(Webapi__Dom__Types.encodeCompareHow(how), range, self)
+      compareBoundaryPoints(self, Webapi__Dom__Types.encodeCompareHow(how), range)
     );
 [@bs.send] external cloneRange : t => t = "";
 [@bs.send] external detach : t => unit = "";
 [@bs.send] external toString : t => string = "";
 [@bs.send] external comparePoint : t => (Dom.node_like('a), int) => int /* compareRsult enum */ = "";
 let comparePoint: (Dom.node_like('a), int, t) => Webapi__Dom__Types.compareResult =
-  (node, offset, self) => Webapi__Dom__Types.decodeCompareResult(comparePoint(node, offset, self));
+  (node, offset, self) => Webapi__Dom__Types.decodeCompareResult(comparePoint(self, node, offset));
 [@bs.send] external createContextualFragment : t => string => Dom.documentFragment = ""; /* experimental, but widely supported */
 [@bs.send] external getBoundingClientRect : t => Dom.domRect = ""; /* experimental, but widely supported */
 [@bs.send] external getClientRects : t => array(Dom.domRect) = ""; /* experimental, but widely supported */
