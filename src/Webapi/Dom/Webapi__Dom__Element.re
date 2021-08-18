@@ -56,50 +56,50 @@ module Impl = (T: {type t;}) => {
   [@bs.set] external setSlot : (T.t, string) => unit = "slot"; /* experimental */
   [@bs.get] external tagName : T.t => string = "";
 
-  [@bs.send.pipe : T.t] external attachShadow : {. "mode": string} => Dom.shadowRoot = ""; /* experimental */
-  [@bs.send.pipe : T.t] external attachShadowOpen : ([@bs.as {json|{ "mode": "open" }|json}] _) => Dom.shadowRoot = "attachShadow"; /* experimental */
-  [@bs.send.pipe : T.t] external attachShadowClosed : ([@bs.as {json|{ "mode": "closed" }|json}] _) => Dom.shadowRoot = "attachShadow"; /* experimental */
-  [@bs.send.pipe : T.t] external animate : (Js.t({..}), Js.t({..})) => Dom.animation = ""; /* experimental */
-  [@bs.send.pipe : T.t] [@bs.return nullable] external closest : string => option(Dom.element) = ""; /* experimental */
-  [@bs.send.pipe : T.t] external createShadowRoot : Dom.shadowRoot = ""; /* experimental AND deprecated (?!) */
-  [@bs.send.pipe : T.t] [@bs.return nullable] external getAttribute : string => option(string) = "";
-  [@bs.send.pipe : T.t] [@bs.return nullable] external getAttributeNS : (string, string) => option(string) = "";
-  [@bs.send.pipe : T.t] external getBoundingClientRect : Dom.domRect = "";
-  [@bs.send.pipe : T.t] external getClientRects : array(Dom.domRect) = "";
-  [@bs.send.pipe : T.t] external getElementsByClassName : string => Dom.htmlCollection = "";
-  [@bs.send.pipe : T.t] external getElementsByTagName : string => Dom.htmlCollection = "";
-  [@bs.send.pipe : T.t] external getElementsByTagNameNS : (string, string) => Dom.htmlCollection = "";
-  [@bs.send.pipe : T.t] external hasAttribute : string => bool = "";
-  [@bs.send.pipe : T.t] external hasAttributeNS : (string, string) => bool = "";
-  [@bs.send.pipe : T.t] external hasAttributes : bool = "";
-  [@bs.send.pipe : T.t] external insertAdjacentElement : (string /* insertPosition enum */, Dom.element_like('a)) => unit = ""; /* experimental, but widely supported */
+  [@bs.send] external attachShadow : T.t => {. "mode": string} => Dom.shadowRoot = ""; /* experimental */
+  [@bs.send] external attachShadowOpen : T.t => ([@bs.as {json|{ "mode": "open" }|json}] _) => Dom.shadowRoot = "attachShadow"; /* experimental */
+  [@bs.send] external attachShadowClosed : T.t => ([@bs.as {json|{ "mode": "closed" }|json}] _) => Dom.shadowRoot = "attachShadow"; /* experimental */
+  [@bs.send] external animate : T.t => (Js.t({..}), Js.t({..})) => Dom.animation = ""; /* experimental */
+  [@bs.send] [@bs.return nullable] external closest : T.t => string => option(Dom.element) = ""; /* experimental */
+  [@bs.send] external createShadowRoot : T.t => Dom.shadowRoot = ""; /* experimental AND deprecated (?!) */
+  [@bs.send] [@bs.return nullable] external getAttribute : T.t => string => option(string) = "";
+  [@bs.send] [@bs.return nullable] external getAttributeNS : T.t => (string, string) => option(string) = "";
+  [@bs.send] external getBoundingClientRect : T.t => Dom.domRect = "";
+  [@bs.send] external getClientRects : T.t => array(Dom.domRect) = "";
+  [@bs.send] external getElementsByClassName : T.t => string => Dom.htmlCollection = "";
+  [@bs.send] external getElementsByTagName : T.t => string => Dom.htmlCollection = "";
+  [@bs.send] external getElementsByTagNameNS : T.t => (string, string) => Dom.htmlCollection = "";
+  [@bs.send] external hasAttribute : T.t => string => bool = "";
+  [@bs.send] external hasAttributeNS : T.t => (string, string) => bool = "";
+  [@bs.send] external hasAttributes : T.t => bool = "";
+  [@bs.send] external insertAdjacentElement : T.t => (string /* insertPosition enum */, Dom.element_like('a)) => unit = ""; /* experimental, but widely supported */
   let insertAdjacentElement: (Webapi__Dom__Types.insertPosition, Dom.element_like('a), T.t) => unit =
     (position, element, self) =>
-      insertAdjacentElement(Webapi__Dom__Types.encodeInsertPosition(position), element, self);
-  [@bs.send.pipe : T.t] external insertAdjacentHTML : (string /* insertPosition enum */, string) => unit = ""; /* experimental, but widely supported */
+      insertAdjacentElement(self, Webapi__Dom__Types.encodeInsertPosition(position), element);
+  [@bs.send] external insertAdjacentHTML : T.t => (string /* insertPosition enum */, string) => unit = ""; /* experimental, but widely supported */
   let insertAdjacentHTML: (Webapi__Dom__Types.insertPosition, string, T.t) => unit =
     (position, text, self) =>
-      insertAdjacentHTML(Webapi__Dom__Types.encodeInsertPosition(position), text, self);
-  [@bs.send.pipe : T.t] external insertAdjacentText : (string /* insertPosition enum */, string) => unit = ""; /* experimental, but widely supported */
+      insertAdjacentHTML(self, Webapi__Dom__Types.encodeInsertPosition(position), text);
+  [@bs.send] external insertAdjacentText : T.t => (string /* insertPosition enum */, string) => unit = ""; /* experimental, but widely supported */
   let insertAdjacentText: (Webapi__Dom__Types.insertPosition, string, T.t) => unit =
     (position, text, self) =>
-      insertAdjacentText(Webapi__Dom__Types.encodeInsertPosition(position), text, self);
-  [@bs.send.pipe : T.t] external matches : string => bool = ""; /* experimental, but widely supported */
-  [@bs.send.pipe : T.t] external releasePointerCapture : Dom.eventPointerId => unit = "";
-  [@bs.send.pipe : T.t] external removeAttribute : string => unit = "";
-  [@bs.send.pipe : T.t] external removeAttributeNS : (string, string) => unit = "";
-  [@bs.send.pipe : T.t] external requestFullscreen : unit = ""; /* experimental */
-  [@bs.send.pipe : T.t] external requestPointerLock : unit = ""; /* experimental */
-  [@bs.send.pipe : T.t] external scrollIntoView : unit = ""; /* experimental, but widely supported */
-  [@bs.send.pipe : T.t] external scrollIntoViewNoAlignToTop : ([@bs.as {json|true|json}] _) => unit = "scrollIntoView"; /* experimental, but widely supported */
-  [@bs.send.pipe : T.t] external scrollIntoViewWithOptions : {. "behavior": string, "block": string} => unit = "scrollIntoView"; /* experimental */
-  [@bs.send.pipe : T.t] external scrollBy : (float, float) => unit = "";
-  [@bs.send.pipe : T.t] external scrollByWithOptions : {. "top": float, "left": float, "behavior": string} => unit = "scrollBy";
-  [@bs.send.pipe : T.t] external scrollTo : (float, float) => unit = "";
-  [@bs.send.pipe : T.t] external scrollToWithOptions : {. "top": float, "left": float, "behavior": string} => unit = "scrollTo";
-  [@bs.send.pipe : T.t] external setAttribute : (string, string) => unit = "";
-  [@bs.send.pipe : T.t] external setAttributeNS : (string, string, string) => unit = "";
-  [@bs.send.pipe : T.t] external setPointerCapture : Dom.eventPointerId => unit = "";
+      insertAdjacentText(self, Webapi__Dom__Types.encodeInsertPosition(position), text);
+  [@bs.send] external matches : T.t => string => bool = ""; /* experimental, but widely supported */
+  [@bs.send] external releasePointerCapture : T.t => Dom.eventPointerId => unit = "";
+  [@bs.send] external removeAttribute : T.t => string => unit = "";
+  [@bs.send] external removeAttributeNS : T.t => (string, string) => unit = "";
+  [@bs.send] external requestFullscreen : T.t => unit = ""; /* experimental */
+  [@bs.send] external requestPointerLock : T.t => unit = ""; /* experimental */
+  [@bs.send] external scrollIntoView : T.t => unit = ""; /* experimental, but widely supported */
+  [@bs.send] external scrollIntoViewNoAlignToTop : T.t => ([@bs.as {json|true|json}] _) => unit = "scrollIntoView"; /* experimental, but widely supported */
+  [@bs.send] external scrollIntoViewWithOptions : T.t => {. "behavior": string, "block": string} => unit = "scrollIntoView"; /* experimental */
+  [@bs.send] external scrollBy : T.t => (float, float) => unit = "";
+  [@bs.send] external scrollByWithOptions : T.t => {. "top": float, "left": float, "behavior": string} => unit = "scrollBy";
+  [@bs.send] external scrollTo : T.t => (float, float) => unit = "";
+  [@bs.send] external scrollToWithOptions : T.t => {. "top": float, "left": float, "behavior": string} => unit = "scrollTo";
+  [@bs.send] external setAttribute : T.t => (string, string) => unit = "";
+  [@bs.send] external setAttributeNS : T.t => (string, string, string) => unit = "";
+  [@bs.send] external setPointerCapture : T.t => Dom.eventPointerId => unit = "";
 
   /* GlobalEventHandlers interface */
   /* Not sure this should be exposed, since EventTarget seems like a better API */

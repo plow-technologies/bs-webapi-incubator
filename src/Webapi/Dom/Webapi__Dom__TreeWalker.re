@@ -6,10 +6,10 @@ type t = Dom.treeWalker;
 [@bs.get] external currentNode : t => Dom.node = "";
 [@bs.set] external setCurrentNode : (t, Dom.node) => unit = "";
 
-[@bs.send.pipe : t] [@bs.return nullable] external parentNode : option(Dom.node) = "";
-[@bs.send.pipe : t] [@bs.return nullable] external firstChild : option(Dom.node) = "";
-[@bs.send.pipe : t] [@bs.return nullable] external lastChild : option(Dom.node) = "";
-[@bs.send.pipe : t] [@bs.return nullable] external previousSibling : option(Dom.node) = "";
-[@bs.send.pipe : t] [@bs.return nullable] external nextSibling : option(Dom.node) = "";
-[@bs.send.pipe : t] [@bs.return nullable] external previousNode : option(Dom.node) = "";
-[@bs.send.pipe : t] [@bs.return nullable] external nextNode : option(Dom.node) = "";
+[@bs.send] [@bs.return nullable] external parentNode : T.t => option(Dom.node) = "";
+[@bs.send] [@bs.return nullable] external firstChild : T.t => option(Dom.node) = "";
+[@bs.send] [@bs.return nullable] external lastChild : T.t => option(Dom.node) = "";
+[@bs.send] [@bs.return nullable] external previousSibling : T.t => option(Dom.node) = "";
+[@bs.send] [@bs.return nullable] external nextSibling : T.t => option(Dom.node) = "";
+[@bs.send] [@bs.return nullable] external previousNode : T.t => option(Dom.node) = "";
+[@bs.send] [@bs.return nullable] external nextNode : T.t => option(Dom.node) = "";

@@ -4,7 +4,7 @@ module Impl = (T: {type t}) => {
 
   [@bs.get] external size: T.t => float = "";
 
-  [@bs.send.pipe: T.t] external slice: (~start: int=?, ~end_: int=?, ~contentType: string=?) => T.t =
+  [@bs.send] external slice: T.t => (~start: int=?, ~end_: int=?, ~contentType: string=?) => T.t =
     "";
 
   /** @since 0.19.0 */

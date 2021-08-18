@@ -102,7 +102,7 @@ module Impl = (T: {type t;}) => {
   [@bs.set] external setValueAsDate : (t_htmlInputElement, Js.Date.t) => unit = "valueAsDate";
   [@bs.get] external valueAsNumber : t_htmlInputElement => float = "";
 
-  [@bs.send.pipe: t_htmlInputElement] external select : unit = "";
+  [@bs.send] external select : t_htmlInputElement => unit = "";
 
   module SelectionDirection = {
     type t =
@@ -117,10 +117,10 @@ module Impl = (T: {type t;}) => {
       | None => "none";
   };
 
-  [@bs.send.pipe: t_htmlInputElement] external setSelectionRange : (int, int) => unit = "";
-  [@bs.send.pipe: t_htmlInputElement] external setSelectionRangeWithDirection_ : (int, int, string) => unit = "setSelectionRange";
+  [@bs.send] external setSelectionRange : t_htmlInputElement => (int, int) => unit = "";
+  [@bs.send] external setSelectionRangeWithDirection_ : t_htmlInputElement => (int, int, string) => unit = "setSelectionRange";
   let setSelectionRangeWithDirection = (selectionStart, selectionEnd, selectionDirection, element) =>
-    element |> setSelectionRangeWithDirection_(selectionStart, selectionEnd, selectionDirection |> SelectionDirection.toString);
+    setSelectionRangeWithDirection_(element, selectionStart, selectionEnd, selectionDirection |> SelectionDirection.toString);
 
   module SelectionMode = {
     type t =
@@ -137,19 +137,19 @@ module Impl = (T: {type t;}) => {
       | Preserve => "preserve";
   };
 
-  [@bs.send.pipe: t_htmlInputElement] external setRangeTextWithinSelection : string => unit = "setRangeText";
-  [@bs.send.pipe: t_htmlInputElement] external setRangeTextWithinInterval : (string, int, int) => unit = "setRangeText";
-  [@bs.send.pipe: t_htmlInputElement] external setRangeTextWithinIntervalWithSelectionMode_ : (string, int, int, string) => unit = "setRangeText";
+  [@bs.send] external setRangeTextWithinSelection : t_htmlInputElement => string => unit = "setRangeText";
+  [@bs.send] external setRangeTextWithinInterval : t_htmlInputElement => (string, int, int) => unit = "setRangeText";
+  [@bs.send] external setRangeTextWithinIntervalWithSelectionMode_ : t_htmlInputElement => (string, int, int, string) => unit = "setRangeText";
   let setRangeTextWithinIntervalWithSelectionMode = (text, selectionStart, selectionEnd, selectionMode, element) =>
-    element |> setRangeTextWithinIntervalWithSelectionMode_(text, selectionStart, selectionEnd, selectionMode |> SelectionMode.toString);
+    setRangeTextWithinIntervalWithSelectionMode_(element, text, selectionStart, selectionEnd, selectionMode |> SelectionMode.toString);
 
-  [@bs.send.pipe: t_htmlInputElement] external setCustomValidity : string => unit = "";
-  [@bs.send.pipe: t_htmlInputElement] external checkValidity : bool = "";
-  [@bs.send.pipe: t_htmlInputElement] external reportValidity : bool = "";
-  [@bs.send.pipe: t_htmlInputElement] external stepDownBy : int => unit = "stepDown";
-  [@bs.send.pipe: t_htmlInputElement] external stepDownByOne : unit = "stepDown";
-  [@bs.send.pipe: t_htmlInputElement] external stepUpBy : int => unit = "stepUp";
-  [@bs.send.pipe: t_htmlInputElement] external stepUpByOne : unit = "stepUp";
+  [@bs.send] external setCustomValidity : t_htmlInputElement => string => unit = "";
+  [@bs.send] external checkValidity : t_htmlInputElement => bool = "";
+  [@bs.send] external reportValidity : t_htmlInputElement => bool = "";
+  [@bs.send] external stepDownBy : t_htmlInputElement => int => unit = "stepDown";
+  [@bs.send] external stepDownByOne : t_htmlInputElement => unit = "stepDown";
+  [@bs.send] external stepUpBy : t_htmlInputElement => int => unit = "stepUp";
+  [@bs.send] external stepUpByOne : t_htmlInputElement => unit = "stepUp";
 };
 
 type t = Dom.htmlInputElement;

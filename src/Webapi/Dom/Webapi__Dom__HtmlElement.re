@@ -59,11 +59,11 @@ module Impl = (T: {type t;}) => {
   [@bs.set] external setTranslate : (t_htmlElement, bool) => unit = "translate"; /* experimental */
   /*let setTranslate : t_htmlElement => bool => unit = fun self value => setTranslate self (Js.Boolean.to_js_boolean value);*/ /* temproarily removed to reduce codegen size */
 
-  [@bs.send.pipe : t_htmlElement] external blur : unit = "";
-  [@bs.send.pipe : t_htmlElement] external click : unit = "";
-  [@bs.send.pipe : t_htmlElement] external focus : unit = "";
-  [@bs.send.pipe : t_htmlElement] external focusPreventScroll : ([@bs.as {json|{ "preventScroll": true }|json}] _) => unit = "focus";
-  [@bs.send.pipe : t_htmlElement] external forceSpellCheck : unit = ""; /* experimental */
+  [@bs.send] external blur : t_htmlElement => unit = "";
+  [@bs.send] external click : t_htmlElement => unit = "";
+  [@bs.send] external focus : t_htmlElement => unit = "";
+  [@bs.send] external focusPreventScroll : t_htmlElement => ([@bs.as {json|{ "preventScroll": true }|json}] _) => unit = "focus";
+  [@bs.send] external forceSpellCheck : t_htmlElement => unit = ""; /* experimental */
 
 
   /* TODO: element-spcific, should be pulled out */

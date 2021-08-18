@@ -14,9 +14,9 @@ module Impl = (T: {type t;}) => {
   [@bs.get] external type_ : T.t => string = "type";
   [@bs.get] external isTrusted : T.t => bool = "";
 
-  [@bs.send.pipe : T.t] external preventDefault : unit = "";
-  [@bs.send.pipe : T.t] external stopImmediatePropagation : unit = "";
-  [@bs.send.pipe : T.t] external stopPropagation : unit = "";
+  [@bs.send] external preventDefault : T.t => unit = "";
+  [@bs.send] external stopImmediatePropagation : T.t => unit = "";
+  [@bs.send] external stopPropagation : T.t => unit = "";
 };
 
 type t = Dom.event;
@@ -27,7 +27,7 @@ include Impl({ type nonrec t = t; });
 [@bs.new] external makeWithOptions : (string, Js.t({..})) => t = "Event";
 
 
-/* 
+/*
    Unimplemented Event interfaces
 
    AudioProcessingEvent /* deprecated */

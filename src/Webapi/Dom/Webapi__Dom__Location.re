@@ -23,8 +23,8 @@ type t = Dom.location;
 [@bs.set] external setPassword : (t, string) => unit = "password";
 [@bs.get] external origin : t => string = "";
 
-[@bs.send.pipe : t] external assign : string => unit = "";
-[@bs.send.pipe : t] external reload : unit = "";
-[@bs.send.pipe : t] external reloadWithForce : ([@bs.as {json|true|json}] _) => unit = "reload";
-[@bs.send.pipe : t] external replace : string => unit = "";
-[@bs.send.pipe : t] external toString : string = "";
+[@bs.send] external assign : t => string => unit = "";
+[@bs.send] external reload : t => unit = "";
+[@bs.send] external reloadWithForce : t => ([@bs.as {json|true|json}] _) => unit = "reload";
+[@bs.send] external replace : t => string => unit = "";
+[@bs.send] external toString : t => string = "";

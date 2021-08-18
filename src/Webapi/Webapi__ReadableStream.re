@@ -4,7 +4,7 @@ module type Reader = {
 
   [@bs.send] external closed: t => Js.Promise.t(closed) = "";
   [@bs.send] external cancel: t => Js.Promise.t(unit) = "";
-  [@bs.send.pipe: t] external cancelWith: string => Js.Promise.t(string) = "cancel";
+  [@bs.send] external cancelWith: t => string => Js.Promise.t(string) = "cancel";
   [@bs.send] external releaseLock: t => unit = "";
 };
 
@@ -22,7 +22,7 @@ type t = Fetch.readableStream;
 
 [@bs.get] external locked: t => bool = "";
 [@bs.send] external cancel: t => Js.Promise.t(unit) = "";
-[@bs.send.pipe: t] external cancelWith: string => Js.Promise.t(string) = "cancel";
+[@bs.send] external cancelWith: t => string => Js.Promise.t(string) = "cancel";
 [@bs.send] external getReader: t => DefaultReader.t = "";
 [@bs.send] external getReaderBYOB: (t, [@bs.as {json|{"mode": "byob"}|json}] _) => BYOBReader.t = "getReader";
 [@bs.send] external tee: t => (t, t) = "";

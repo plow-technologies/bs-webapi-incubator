@@ -64,36 +64,36 @@ module Impl = (T: {type t;}) => {
   [@bs.get] external top : t_window => Dom.window = "";
   [@bs.get] external window : t_window => t_window = ""; /* This is pointless I think, it's just here because window is the implicit global scope, and it's needed to be able to get a reference to it */
 
-  [@bs.send.pipe : t_window] external alert : string => unit = "";
-  [@bs.send.pipe : t_window] external blur : unit = "";
-  [@bs.send.pipe : t_window] external cancelIdleCallback : idleCallbackId => unit = ""; /* experimental, Cooperative Scheduling of Background Tasks */
-  [@bs.send.pipe : t_window] external close : unit = "";
-  [@bs.send.pipe : t_window] external confirm : string => bool = "";
-  [@bs.send.pipe : t_window] external focus : unit = "";
-  [@bs.send.pipe : t_window] external getComputedStyle : Dom.element => Dom.cssStyleDeclaration = "";
-  [@bs.send.pipe : t_window] external getComputedStyleWithPseudoElement : (Dom.element, string) => Dom.cssStyleDeclaration = "getComputedStyle";
-  [@bs.send.pipe : t_window] external getSelection : Dom.selection = "";
-  [@bs.send.pipe : t_window] external matchMedia : string => mediaQueryList = ""; /* experimental, CSSOM View module */
-  [@bs.send.pipe : t_window] external moveBy : (int, int) => unit = ""; /* experimental, CSSOM View module */
-  [@bs.send.pipe : t_window] external moveTo : (int, int) => unit = ""; /* experimental, CSSOM View module */
-  [@bs.send.pipe : t_window] [@bs.return nullable] external open_ : (~url: string, ~name: string, ~features: string=?) => option(Dom.window) = "open"; /* yes, features is a stringly typed list of key value pairs, sigh */
-  [@bs.send.pipe : t_window] external postMessage : ('a, string) => unit = ""; /* experimental-ish?, Web Messaging */
-  [@bs.send.pipe : t_window] external postMessageWithTransfers : ('a, string, array(transferable)) => unit = "postMessage"; /* experimental-ish?, Web Messaging */
-  [@bs.send.pipe : t_window] external print : unit = "";
-  [@bs.send.pipe : t_window] external prompt : string => string = "";
-  [@bs.send.pipe : t_window] external promptWithDefault : (string, string) => string = "prompt";
+  [@bs.send] external alert : t_window => string => unit = "";
+  [@bs.send] external blur : t_window => unit = "";
+  [@bs.send] external cancelIdleCallback : t_window => idleCallbackId => unit = ""; /* experimental, Cooperative Scheduling of Background Tasks */
+  [@bs.send] external close : t_window => unit = "";
+  [@bs.send] external confirm : t_window => string => bool = "";
+  [@bs.send] external focus : t_window => unit = "";
+  [@bs.send] external getComputedStyle : t_window => Dom.element => Dom.cssStyleDeclaration = "";
+  [@bs.send] external getComputedStyleWithPseudoElement : t_window => (Dom.element, string) => Dom.cssStyleDeclaration = "getComputedStyle";
+  [@bs.send] external getSelection : t_window => Dom.selection = "";
+  [@bs.send] external matchMedia : t_window => string => mediaQueryList = ""; /* experimental, CSSOM View module */
+  [@bs.send] external moveBy : t_window => (int, int) => unit = ""; /* experimental, CSSOM View module */
+  [@bs.send] external moveTo : t_window => (int, int) => unit = ""; /* experimental, CSSOM View module */
+  [@bs.send] [@bs.return nullable] external open_ : t_window => (~url: string, ~name: string, ~features: string=?) => option(Dom.window) = "open"; /* yes, features is a stringly typed list of key value pairs, sigh */
+  [@bs.send] external postMessage : t_window => ('a, string) => unit = ""; /* experimental-ish?, Web Messaging */
+  [@bs.send] external postMessageWithTransfers : t_window => ('a, string, array(transferable)) => unit = "postMessage"; /* experimental-ish?, Web Messaging */
+  [@bs.send] external print : t_window => unit = "";
+  [@bs.send] external prompt : t_window => string => string = "";
+  [@bs.send] external promptWithDefault : t_window => (string, string) => string = "prompt";
   /* requestAnimationFrame: accessed directly via Webapi */
-  [@bs.send.pipe : t_window] external requestIdleCallback : (idleDeadline => unit) => idleCallbackId = ""; /* experimental, Cooperative Scheduling of Background Tasks */
-  [@bs.send.pipe : t_window] external requestIdleCallbackWithOptions : (idleDeadline => unit, {. "timeout": int}) => idleCallbackId = "requestIdleCallback"; /* experimental, Cooperative Scheduling of Background Tasks */
-  [@bs.send.pipe : t_window] external resizeBy : (int, int) => unit = ""; /* experimental, CSSOM View module */
-  [@bs.send.pipe : t_window] external resizeTo : (int, int) => unit = ""; /* experimental, CSSOM View module */
-  [@bs.send.pipe : t_window] external scroll : (float, float) => unit = ""; /* experimental, CSSOM View module */
-  [@bs.send.pipe : t_window] external scrollBy : (float, float) => unit = ""; /* experimental, CSSOM View module */
-  [@bs.send.pipe : t_window] external scrollTo : (float, float) => unit = ""; /* experimental, CSSOM View module */
-  [@bs.send.pipe : t_window] external stop : unit = "";
+  [@bs.send] external requestIdleCallback : t_window => (idleDeadline => unit) => idleCallbackId = ""; /* experimental, Cooperative Scheduling of Background Tasks */
+  [@bs.send] external requestIdleCallbackWithOptions : t_window => (idleDeadline => unit, {. "timeout": int}) => idleCallbackId = "requestIdleCallback"; /* experimental, Cooperative Scheduling of Background Tasks */
+  [@bs.send] external resizeBy : t_window => (int, int) => unit = ""; /* experimental, CSSOM View module */
+  [@bs.send] external resizeTo : t_window => (int, int) => unit = ""; /* experimental, CSSOM View module */
+  [@bs.send] external scroll : t_window => (float, float) => unit = ""; /* experimental, CSSOM View module */
+  [@bs.send] external scrollBy : t_window => (float, float) => unit = ""; /* experimental, CSSOM View module */
+  [@bs.send] external scrollTo : t_window => (float, float) => unit = ""; /* experimental, CSSOM View module */
+  [@bs.send] external stop : t_window => unit = "";
 
-  [@bs.send.pipe : t_window] external addPopStateEventListener : ([@bs.as "popstate"] _, Dom.popStateEvent => unit) => unit = "addEventListener";
-  [@bs.send.pipe : t_window] external removePopStateEventListener : ([@bs.as "popstate"] _, Dom.popStateEvent => unit) => unit= "removeEventListener";
+  [@bs.send] external addPopStateEventListener : t_window => ([@bs.as "popstate"] _, Dom.popStateEvent => unit) => unit = "addEventListener";
+  [@bs.send] external removePopStateEventListener : t_window => ([@bs.as "popstate"] _, Dom.popStateEvent => unit) => unit= "removeEventListener";
 
   [@bs.set] external setOnLoad : (t_window, unit => unit) => unit = "onload"; /* use addEventListener instead? */
 };

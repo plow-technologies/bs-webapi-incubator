@@ -17,6 +17,6 @@ include Webapi__Dom__UiEvent.Impl({ type nonrec t = t; });
 [@bs.get] external repeat : t => bool = "";
 [@bs.get] external shiftKey : t => bool = "";
 
-[@bs.send.pipe : t] external getModifierState : string /* modifierKey enum */ => bool = "";
+[@bs.send] external getModifierState : t => string /* modifierKey enum */ => bool = "";
 let getModifierState: (Webapi__Dom__Types.modifierKey, t) => bool =
-  (key, self) => getModifierState(Webapi__Dom__Types.encodeModifierKey(key), self);
+  (key, self) => getModifierState(self, Webapi__Dom__Types.encodeModifierKey(key));

@@ -19,9 +19,9 @@ module Impl = (T: {type t;}) => {
   [@bs.get] external shiftKey : T.t => bool = "";
   [@bs.get] external x : T.t => int = ""; /* experimental */
   [@bs.get] external y : T.t => int = ""; /* experimental */
-  [@bs.send.pipe : T.t] external getModifierState : string /* modifierKey enum */ => bool = "";
+  [@bs.send] external getModifierState : T.t => string /* modifierKey enum */ => bool = "";
   let getModifierState: (Webapi__Dom__Types.modifierKey, T.t) => bool =
-    (key, self) => getModifierState(Webapi__Dom__Types.encodeModifierKey(key), self);
+    (key, self) => getModifierState(self, Webapi__Dom__Types.encodeModifierKey(key));
 };
 
 type t = Dom.mouseEvent;

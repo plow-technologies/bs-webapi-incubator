@@ -2,20 +2,20 @@ type t = Dom.domTokenList;
 
 [@bs.get] external length : t => int = "";
 
-[@bs.send.pipe : t] [@bs.return nullable] external item : int => option(string) = "";
-[@bs.send.pipe : t] external add : string => unit = "";
-[@bs.send.pipe : t] [@bs.splice] external addMany : array(string) => unit = "add";
-[@bs.send.pipe : t] external contains : string => bool = "contains";
+[@bs.send] [@bs.return nullable] external item : t => int => option(string) = "";
+[@bs.send] external add : t => string => unit = "";
+[@bs.send] [@bs.splice] external addMany : t => array(string) => unit = "add";
+[@bs.send] external contains : t => string => bool = "contains";
 /* entries: iterator API, should have language support */
-[@bs.send.pipe : t] external forEach : ((string, int) => unit) => unit = "";
+[@bs.send] external forEach : t => ((string, int) => unit) => unit = "";
 /* keys: iterator API, should have language support */
-[@bs.send.pipe : t] external remove : string => unit = "";
-[@bs.send.pipe : t] [@bs.splice] external removeMany : array(string) => unit = "remove";
-[@bs.send.pipe : t] external replace : (string, string) => unit = ""; /* experimental */
-[@bs.send.pipe : t] external supports : string => bool = ""; /* experimental, Content Management Level 1 */
-[@bs.send.pipe : t] external toggle : string => bool = "";
-[@bs.send.pipe : t] external toggleForced : (string, [@bs.as {json|true|json}] _) => bool = "toggle";
-[@bs.send.pipe : t] external toString : string = "";
+[@bs.send] external remove : t => string => unit = "";
+[@bs.send] [@bs.splice] external removeMany : t => array(string) => unit = "remove";
+[@bs.send] external replace : t => (string, string) => unit = ""; /* experimental */
+[@bs.send] external supports : t => string => bool = ""; /* experimental, Content Management Level 1 */
+[@bs.send] external toggle : t => string => bool = "";
+[@bs.send] external toggleForced : t => (string, [@bs.as {json|true|json}] _) => bool = "toggle";
+[@bs.send] external toString : t => string = "";
 /* values: iterator API, should have language support */
 
 [@bs.get] external value : t => string = ""; /* experimental, from being merged with domSettableTokenList */

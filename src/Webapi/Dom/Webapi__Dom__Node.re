@@ -27,30 +27,30 @@ module Impl = (T: {type t;}) => {
   [@bs.get] external textContent : T.t => string = "";
   [@bs.set] external setTextContent : (T.t, string) => unit = "textContent";
 
-  [@bs.send.pipe : T.t] external appendChild : Dom.node_like('a) => unit = "";
-  [@bs.send.pipe : T.t] external cloneNode : T.t = "";
-  [@bs.send.pipe : T.t] external cloneNodeDeep : ([@bs.as {json|true|json}] _) => T.t = "cloneNode";
-  [@bs.send.pipe : T.t] external compareDocumentPosition : Dom.node_like('a) => int = ""; /* returns a bitmask which could also be represeneted as an enum, see https://developer.mozilla.org/en-US/docs/Web/API/Node/compareDocumentPosition */
-  [@bs.send.pipe : T.t] external contains : Dom.node_like('a) => bool = "";
-  [@bs.send.pipe : T.t] external getRootNode : Dom.node = "";
-  [@bs.send.pipe : T.t] external getRootNodeComposed : ([@bs.as {json|{ "composed": true }|json}] _) => Dom.node = "getRootNode";
-  [@bs.send.pipe : T.t] external hasChildNodes : bool = "";
-  [@bs.send.pipe : T.t] external insertBefore : (Dom.node_like('a), Dom.node_like('b)) => Dom.node_like('a) = "";
+  [@bs.send] external appendChild : T.t => Dom.node_like('a) => unit = "";
+  [@bs.send] external cloneNode : T.t => T.t = "";
+  [@bs.send] external cloneNodeDeep : T.t => ([@bs.as {json|true|json}] _) => T.t = "cloneNode";
+  [@bs.send] external compareDocumentPosition : T.t => Dom.node_like('a) => int = ""; /* returns a bitmask which could also be represeneted as an enum, see https://developer.mozilla.org/en-US/docs/Web/API/Node/compareDocumentPosition */
+  [@bs.send] external contains : T.t => Dom.node_like('a) => bool = "";
+  [@bs.send] external getRootNode : T.t => Dom.node = "";
+  [@bs.send] external getRootNodeComposed : T.t => ([@bs.as {json|{ "composed": true }|json}] _) => Dom.node = "getRootNode";
+  [@bs.send] external hasChildNodes : T.t => bool = "";
+  [@bs.send] external insertBefore : T.t => (Dom.node_like('a), Dom.node_like('b)) => Dom.node_like('a) = "";
   /* (temporarily?) removed to reduce codegen size. This variant is just for convenience, `appendChild` can be used in place of passing `null` to `insertBefore`
   external insertBefore : Dom.node_like 'a => Js.null (Dom.node_like 'b) => Dom.node_like 'a = "" [@@bs.send.pipe: T.t];
   let insertBefore : Dom.node_like 'a => option (Dom.node_like 'b) => T.t => Dom.node_like 'a = fun node reference self => insertBefore node (Js.Null.fromOption reference) self;
   */
-  [@bs.send.pipe : T.t] external isDefaultNamespace : string => bool = "";
-  [@bs.send.pipe : T.t] external isEqualNode : Dom.node_like('a) => bool = "";
-  [@bs.send.pipe : T.t] external isSameNode : Dom.node_like('a) => bool = "";
-  [@bs.send.pipe : T.t] [@bs.return nullable] external lookupNamespaceURI : string => option(string) = "";
-  [@bs.send.pipe : T.t] [@bs.return nullable] external lookupDefaultNamespaceURI : ([@bs.as {json|null|json}] _) => option(string) = "lookupNamespaceURI";
-  [@bs.send.pipe : T.t] external lookupPrefix : string = "lookupPrefix";
-  [@bs.send.pipe : T.t] external normalize : unit = "";
-  [@bs.send.pipe : T.t] external removeChild : Dom.node_like('a) => Dom.node_like('a) = "";
+  [@bs.send] external isDefaultNamespace : T.t => string => bool = "";
+  [@bs.send] external isEqualNode : T.t => Dom.node_like('a) => bool = "";
+  [@bs.send] external isSameNode : T.t => Dom.node_like('a) => bool = "";
+  [@bs.send] [@bs.return nullable] external lookupNamespaceURI : T.t => string => option(string) = "";
+  [@bs.send] [@bs.return nullable] external lookupDefaultNamespaceURI : T.t => ([@bs.as {json|null|json}] _) => option(string) = "lookupNamespaceURI";
+  [@bs.send] external lookupPrefix : T.t => string = "lookupPrefix";
+  [@bs.send] external normalize : T.t => unit = "";
+  [@bs.send] external removeChild : T.t => Dom.node_like('a) => Dom.node_like('a) = "";
 
   /** @since 0.19.0 */
-  [@bs.send.pipe : T.t] external replaceChild : (Dom.node_like('a), Dom.node_like('b)) => Dom.node_like('b) = "";
+  [@bs.send] external replaceChild : T.t => (Dom.node_like('a), Dom.node_like('b)) => Dom.node_like('b) = "";
 };
 
 type t = Dom.node;

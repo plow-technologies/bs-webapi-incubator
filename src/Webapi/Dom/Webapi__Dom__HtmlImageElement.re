@@ -32,7 +32,7 @@ let setCrossOrigin = (self, value) =>
 [@bs.get] external decoding : t => string = "";
 [@bs.set] external setDecoding : (t, string) => unit = "decoding";
 
-[@bs.send.pipe: t] external decode : Js.Promise.t(unit) = "";
+[@bs.send] external decode : t => Js.Promise.t(unit) = "";
 
 include Webapi__Dom__Node.Impl({ type nonrec t = t; });
 include Webapi__Dom__EventTarget.Impl({ type nonrec t = t; });

@@ -38,21 +38,21 @@ module Impl = (T: {type t;}) => {
   [@bs.set] external setTitle : (t_htmlDocument, string) => unit = "title";
   [@bs.get] external url : t_htmlDocument => string = "URL";
 
-  [@bs.send.pipe : t_htmlDocument] external close : unit = "";
-  [@bs.send.pipe : t_htmlDocument] external execCommand : (string, bool, Js.null(string)) => bool = "";
+  [@bs.send] external close : t_htmlDocument => unit = "";
+  [@bs.send] external execCommand : t_htmlDocument => (string, bool, Js.null(string)) => bool = "";
   let execCommand: (string, bool, option(string), t_htmlDocument) => bool =
     (command, show, value, self) =>
-      execCommand(command, show, Js.Null.fromOption(value), self);
-  [@bs.send.pipe : t_htmlDocument] external getElementsByName : string => Dom.nodeList = "";
-  [@bs.send.pipe : t_htmlDocument] external getSelection : Dom.selection = "";
-  [@bs.send.pipe : t_htmlDocument] external hasFocus : bool = "";
-  [@bs.send.pipe : t_htmlDocument] external open_ : unit = "open";
-  [@bs.send.pipe : t_htmlDocument] external queryCommandEnabled : string => bool = "";
-  [@bs.send.pipe : t_htmlDocument] external queryCommandIndeterm : string => bool = "";
-  [@bs.send.pipe : t_htmlDocument] external queryCommandSupported : string => bool = "";
-  [@bs.send.pipe : t_htmlDocument] external queryCommandValue : string => string = "";
-  [@bs.send.pipe : t_htmlDocument] external write : string => unit = "";
-  [@bs.send.pipe : t_htmlDocument] external writeln : string => unit = "";
+      execCommand(self, command, show, Js.Null.fromOption(value));
+  [@bs.send] external getElementsByName : t_htmlDocument => string => Dom.nodeList = "";
+  [@bs.send] external getSelection : t_htmlDocument => Dom.selection = "";
+  [@bs.send] external hasFocus : t_htmlDocument => bool = "";
+  [@bs.send] external open_ : t_htmlDocument => unit = "open";
+  [@bs.send] external queryCommandEnabled : t_htmlDocument => string => bool = "";
+  [@bs.send] external queryCommandIndeterm : t_htmlDocument => string => bool = "";
+  [@bs.send] external queryCommandSupported : t_htmlDocument => string => bool = "";
+  [@bs.send] external queryCommandValue : t_htmlDocument => string => string = "";
+  [@bs.send] external write : t_htmlDocument => string => unit = "";
+  [@bs.send] external writeln : t_htmlDocument => string => unit = "";
 };
 
 type t = Dom.htmlDocument;

@@ -45,42 +45,42 @@ module Impl = (T: {type t;}) => {
   let visibilityState: T.t => Webapi__Dom__Types.visibilityState =
     (self) => Webapi__Dom__Types.decodeVisibilityState(visibilityState(self));
 
-  [@bs.send.pipe : T.t] external adoptNode : Dom.element_like('a) => Dom.element_like('a) = "";
-  [@bs.send.pipe : T.t] external createAttribute : string => Dom.attr = "";
-  [@bs.send.pipe : T.t] external createAttributeNS : (string, string) => Dom.attr = "";
-  [@bs.send.pipe : T.t] external createComment : string => Dom.comment = "";
-  [@bs.send.pipe : T.t] external createDocumentFragment : Dom.documentFragment = "";
-  [@bs.send.pipe : T.t] external createElement : string => Dom.element = "";
-  [@bs.send.pipe : T.t] external createElementWithOptions : (string, Js.t({..})) => Dom.element = "createElement"; /* not widely supported */
-  [@bs.send.pipe : T.t] external createElementNS : (string, string) => Dom.element = "";
-  [@bs.send.pipe : T.t] external createElementNSWithOptions : (string, string, Js.t({..})) => Dom.element = "createElementNS"; /* not widely supported */
-  [@bs.send.pipe : T.t] external createEvent : string /* large enum */ => Dom.event = ""; /* discouraged (but not deprecated) in favor of Event constructors */
-  [@bs.send.pipe : T.t] external createNodeIterator : Dom.node_like('a) => Dom.nodeIterator = "";
-  [@bs.send.pipe : T.t] external createNodeIteratorWithWhatToShow : (Dom.node_like('a), Webapi__Dom__Types.WhatToShow.t) => Dom.nodeIterator = "createNodeIterator";
-  [@bs.send.pipe : T.t] external createNodeIteratorWithWhatToShowFilter : (Dom.node_like('a), Webapi__Dom__Types.WhatToShow.t, Dom.nodeFilter) => Dom.nodeIterator = "createNodeIterator"; /* createProcessingInstruction */
-  [@bs.send.pipe : T.t] external createRange : Dom.range = "";
-  [@bs.send.pipe : T.t] external createTextNode : string => Dom.text = "";
-  [@bs.send.pipe : T.t] external createTreeWalker : Dom.element_like('a) => Dom.treeWalker = "";
-  [@bs.send.pipe : T.t] external createTreeWalkerWithWhatToShow : (Dom.element_like('a), Webapi__Dom__Types.WhatToShow.t) => Dom.treeWalker = "createTreeWalker";
-  [@bs.send.pipe : T.t] external createTreeWalkerWithWhatToShowFilter : (Dom.element_like('a), Webapi__Dom__Types.WhatToShow.t, Dom.nodeFilter) => Dom.treeWalker = "createTreeWalker";
-  [@bs.send.pipe : T.t] external elementFromPoint : (int, int) => Dom.element = ""; /* experimental, but widely supported */
-  [@bs.send.pipe : T.t] external elementsFromPoint : (int, int) => array(Dom.element) = ""; /* experimental */
-  [@bs.send.pipe : T.t] external enableStyleSheetsForSet : string => unit = "";
-  [@bs.send.pipe : T.t] external exitPointerLock : unit = ""; /* experimental */
-  [@bs.send.pipe : T.t] external getAnimations : array(Dom.animation) = ""; /* experimental */
-  [@bs.send.pipe : T.t] external getElementsByClassName : string => Dom.htmlCollection = "";
-  [@bs.send.pipe : T.t] external getElementsByTagName : string => Dom.htmlCollection = "";
-  [@bs.send.pipe : T.t] external getElementsByTagNameNS : (string, string) => Dom.htmlCollection = "";
-  [@bs.send.pipe : T.t] external importNode : Dom.element_like('a) => Dom.element_like('a) = "";
-  [@bs.send.pipe : T.t] external importNodeDeep : (Dom.element_like('a), [@bs.as {json|true|json}] _) => Dom.element_like('a) = "importNode";
-  [@bs.send.pipe : T.t] external registerElement : (string, unit) => Dom.element = ""; /* experimental and deprecated in favor of customElements.define() */
-  [@bs.send.pipe : T.t] external registerElementWithOptions : (string, Js.t({..}), unit) => Dom.element = "registerElement"; /* experimental and deprecated in favor of customElements.define() */
+  [@bs.send] external adoptNode : T.t => Dom.element_like('a) => Dom.element_like('a) = "";
+  [@bs.send] external createAttribute : T.t => string => Dom.attr = "";
+  [@bs.send] external createAttributeNS : T.t => (string, string) => Dom.attr = "";
+  [@bs.send] external createComment : T.t => string => Dom.comment = "";
+  [@bs.send] external createDocumentFragment : T.t => Dom.documentFragment = "";
+  [@bs.send] external createElement : T.t => string => Dom.element = "";
+  [@bs.send] external createElementWithOptions : T.t => (string, Js.t({..})) => Dom.element = "createElement"; /* not widely supported */
+  [@bs.send] external createElementNS : T.t => (string, string) => Dom.element = "";
+  [@bs.send] external createElementNSWithOptions : T.t => (string, string, Js.t({..})) => Dom.element = "createElementNS"; /* not widely supported */
+  [@bs.send] external createEvent : T.t => string /* large enum */ => Dom.event = ""; /* discouraged (but not deprecated) in favor of Event constructors */
+  [@bs.send] external createNodeIterator : T.t => Dom.node_like('a) => Dom.nodeIterator = "";
+  [@bs.send] external createNodeIteratorWithWhatToShow : T.t => (Dom.node_like('a), Webapi__Dom__Types.WhatToShow.t) => Dom.nodeIterator = "createNodeIterator";
+  [@bs.send] external createNodeIteratorWithWhatToShowFilter : T.t => (Dom.node_like('a), Webapi__Dom__Types.WhatToShow.t, Dom.nodeFilter) => Dom.nodeIterator = "createNodeIterator"; /* createProcessingInstruction */
+  [@bs.send] external createRange : T.t => Dom.range = "";
+  [@bs.send] external createTextNode : T.t => string => Dom.text = "";
+  [@bs.send] external createTreeWalker : T.t => Dom.element_like('a) => Dom.treeWalker = "";
+  [@bs.send] external createTreeWalkerWithWhatToShow : T.t => (Dom.element_like('a), Webapi__Dom__Types.WhatToShow.t) => Dom.treeWalker = "createTreeWalker";
+  [@bs.send] external createTreeWalkerWithWhatToShowFilter : T.t => (Dom.element_like('a), Webapi__Dom__Types.WhatToShow.t, Dom.nodeFilter) => Dom.treeWalker = "createTreeWalker";
+  [@bs.send] external elementFromPoint : T.t => (int, int) => Dom.element = ""; /* experimental, but widely supported */
+  [@bs.send] external elementsFromPoint : T.t => (int, int) => array(Dom.element) = ""; /* experimental */
+  [@bs.send] external enableStyleSheetsForSet : T.t => string => unit = "";
+  [@bs.send] external exitPointerLock : T.t => unit = ""; /* experimental */
+  [@bs.send] external getAnimations : T.t => array(Dom.animation) = ""; /* experimental */
+  [@bs.send] external getElementsByClassName : T.t => string => Dom.htmlCollection = "";
+  [@bs.send] external getElementsByTagName : T.t => string => Dom.htmlCollection = "";
+  [@bs.send] external getElementsByTagNameNS : T.t => (string, string) => Dom.htmlCollection = "";
+  [@bs.send] external importNode : T.t => Dom.element_like('a) => Dom.element_like('a) = "";
+  [@bs.send] external importNodeDeep : T.t => (Dom.element_like('a), [@bs.as {json|true|json}] _) => Dom.element_like('a) = "importNode";
+  [@bs.send] external registerElement : T.t => (string, unit) => Dom.element = ""; /* experimental and deprecated in favor of customElements.define() */
+  [@bs.send] external registerElementWithOptions : T.t => (string, Js.t({..}), unit) => Dom.element = "registerElement"; /* experimental and deprecated in favor of customElements.define() */
 
   /** XPath stuff */
   /* createExpression */
   /* createNSResolver */
   /* evaluate */
-  
+
   /* GlobalEventHandlers interface */
 };
 
