@@ -1,6 +1,6 @@
 {
   "name": "bs-webapi",
-  "version": "0.19.2",
+  "version": "0.20.0",
   "description": "Reason + BuckleScript bindings to DOM",
   "repository": {
     "type": "git",
@@ -14,9 +14,9 @@
     "dom"
   ],
   "scripts": {
-    "build": "bsb -make-world",
-    "start": "bsb -w",
-    "clean": "bsb -clean-world",
+    "build": "rescript build",
+    "start": "rescript build -w",
+    "clean": "rescript clean",
     "doc-install": "npm install --no-save bsdoc",
     "test": "bsb -make-world && bsdoc build api && bsdoc support-files"
   },
@@ -27,9 +27,9 @@
   "author": "chenglou",
   "license": "MIT",
   "devDependencies": {
-    "bs-platform": "^7.1.0"
+    "rescript": "^9.1.4"
   },
   "dependencies": {
-    "bs-fetch": "^0.6.2"
+    "bs-fetch": "plow-technologies/bs-fetch#960d284ebcffc0d097c164edec428c1bd80da53b"
   }
 }
